@@ -1,0 +1,8 @@
+# Material-fonte dos apps: pesado (105 MB) e só usado para gerar assets/img/.
+# O site publica apenas os WebP otimizados que ficam versionados.
+Portfolio-KegelFlow/
+Portfolio-Fruitsful/
+portfolio_Flashs/
+
+.DS_Store
+Thumbs.db

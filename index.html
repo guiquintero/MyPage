@@ -1,433 +1,556 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guilherme Quintero - Desenvolvedor Front-End</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guilherme Quintero Lorenzi — Desenvolvedor iOS</title>
+<meta name="description" content="Aplicativos nativos para iPhone, iPad e Apple Watch, feitos em Swift e SwiftUI. KegelFlow, Flash's e Fruitsful.">
+<meta name="author" content="Guilherme Quintero Lorenzi">
+<meta name="theme-color" content="#08080a">
+<link rel="canonical" href="https://guilhermequinterolorenzi.com/">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0a2e1a 0%, #051510 50%, #0a1f15 100%);
-            color: white;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://guilhermequinterolorenzi.com/">
+<meta property="og:title" content="Guilherme Quintero Lorenzi — Desenvolvedor iOS">
+<meta property="og:description" content="Aplicativos nativos para iPhone, iPad e Apple Watch, feitos em Swift e SwiftUI.">
+<meta property="og:image" content="https://guilhermequinterolorenzi.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
 
-        /* Efeitos de blur no fundo */
-        .blur-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.4;
-            pointer-events: none;
-        }
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/style.css">
 
-        .blur-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, #10b981 0%, transparent 70%);
-            top: -10%;
-            left: -10%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .blur-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #059669 0%, transparent 70%);
-            bottom: -15%;
-            right: -10%;
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .blur-3 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #047857 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 15s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-50px, 50px) scale(0.9); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
-        }
-
-        /* Header */
-        nav {
-            position: fixed;
-            top: 30px;
-            right: 50%;
-            transform: translateX(50%);
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 12px 24px;
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            z-index: 100;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        nav a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: white;
-        }
-
-        .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-left: 20px;
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .globe-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 40px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #10b981, #059669);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .profile-name {
-            font-size: 16px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        h1 {
-            font-size: clamp(48px, 8vw, 92px);
-            font-weight: 700;
-            margin-bottom: 32px;
-            line-height: 1.1;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .subtitle {
-            font-size: clamp(18px, 3vw, 24px);
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 700px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .cta-button {
-            background: white;
-            color: #0a2e1a;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 600;
-            display: inline-block;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease-out 0.6s both;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator:hover {
-            border-color: rgba(255, 255, 255, 0.6);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            stroke: rgba(255, 255, 255, 0.6);
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        /* Section Em Desenvolvimento */
-        .dev-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 20px;
-            position: relative;
-        }
-
-        .dev-container {
-            max-width: 800px;
-            text-align: center;
-        }
-
-        .dev-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 40px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        .dev-icon svg {
-            width: 50px;
-            height: 50px;
-            stroke: #10b981;
-        }
-
-        .dev-section h2 {
-            font-size: clamp(36px, 6vw, 56px);
-            margin-bottom: 24px;
-            color: #10b981;
-        }
-
-        .dev-section p {
-            font-size: clamp(16px, 2.5vw, 20px);
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-top: 60px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
-            border-color: rgba(16, 185, 129, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #10b981;
-        }
-
-        .feature-card p {
-            font-size: 15px;
-            margin: 0;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 10px 20px;
-                gap: 20px;
-            }
-
-            nav a {
-                font-size: 14px;
-            }
-        }
-    </style>
+<span hidden data-title-pt="Guilherme Quintero Lorenzi — Desenvolvedor iOS"
+             data-title-en="Guilherme Quintero Lorenzi — iOS Developer"></span>
+<script>
+  /* aplica o idioma salvo antes da primeira pintura, para não piscar */
+  try {
+    var l = localStorage.getItem('gql.lang') || (navigator.language || 'pt').slice(0, 2);
+    document.documentElement.lang = l === 'en' ? 'en' : 'pt-BR';
+  } catch (e) {}
+</script>
 </head>
+
 <body>
-    <!-- Efeitos de blur no fundo -->
-    <div class="blur-circle blur-1"></div>
-    <div class="blur-circle blur-2"></div>
-    <div class="blur-circle blur-3"></div>
+<a class="skip" href="#main"><span data-lang="pt">Pular para o conteúdo</span><span data-lang="en">Skip to content</span></a>
 
-    <!-- Navegação -->
-    <nav>
-        <a href="#projetos">Projetos</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-        <div class="language-selector">
-            <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-            <span style="color: rgba(255,255,255,0.8); font-size: 15px;">PT</span>
+<!-- ============================================================ nav -->
+<nav class="nav">
+  <a class="nav__brand" href="#top">
+    <span class="nav__mark" aria-hidden="true">GQ</span>
+    <span>Guilherme Quintero</span>
+  </a>
+  <div class="nav__links">
+    <a href="#apps" data-nav="apps">Apps</a>
+    <a href="#sobre" data-nav="sobre"><span data-lang="pt">Sobre</span><span data-lang="en">About</span></a>
+    <a href="#suporte" data-nav="suporte"><span data-lang="pt">Suporte</span><span data-lang="en">Support</span></a>
+  </div>
+  <div class="lang" role="group" data-label-pt="Idioma do site" data-label-en="Site language" aria-label="Idioma do site">
+    <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
+    <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+  </div>
+</nav>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- =========================================================== hero -->
+<header class="hero">
+  <div class="glow glow--a" aria-hidden="true"></div>
+  <div class="glow glow--b" aria-hidden="true"></div>
+
+  <div class="wrap hero__inner">
+    <p class="hero__tag">
+      <span class="dot" aria-hidden="true"></span>
+      <span data-lang="pt">Dois apps publicados na App Store</span>
+      <span data-lang="en">Two apps live on the App Store</span>
+    </p>
+
+    <h1>
+      <span data-lang="pt">Aplicativos nativos para <em>iPhone, iPad e Apple&nbsp;Watch</em>.</span>
+      <span data-lang="en">Native apps for <em>iPhone, iPad and Apple&nbsp;Watch</em>.</span>
+    </h1>
+
+    <p class="hero__sub">
+      <span data-lang="pt">Sou Guilherme Quintero Lorenzi. Desenho e programo apps em Swift e SwiftUI — do primeiro rascunho até a ficha na loja, incluindo os testes, as traduções e as imagens da App&nbsp;Store.</span>
+      <span data-lang="en">I'm Guilherme Quintero Lorenzi. I design and build apps in Swift and SwiftUI — from the first sketch to the store listing, including the tests, the translations and the App&nbsp;Store artwork.</span>
+    </p>
+
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#apps">
+        <span data-lang="pt">Ver os apps</span><span data-lang="en">See the apps</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+      </a>
+      <a class="btn btn--ghost" href="suporte.html">
+        <span data-lang="pt">Suporte ao cliente</span><span data-lang="en">Customer support</span>
+      </a>
+    </div>
+
+    <dl class="figures reveal">
+      <div>
+        <dt>3</dt>
+        <dd><span data-lang="pt">apps em Swift<br>(2 na App&nbsp;Store)</span><span data-lang="en">apps in Swift<br>(2 on the App&nbsp;Store)</span></dd>
+      </div>
+      <div>
+        <dt><span data-lang="pt">30&nbsp;mil</span><span data-lang="en">30k</span></dt>
+        <dd><span data-lang="pt">linhas de Swift<br>escritas</span><span data-lang="en">lines of Swift<br>written</span></dd>
+      </div>
+      <div>
+        <dt>500+</dt>
+        <dd><span data-lang="pt">testes<br>automatizados</span><span data-lang="en">automated<br>tests</span></dd>
+      </div>
+      <div>
+        <dt>50</dt>
+        <dd><span data-lang="pt">idiomas no app<br>mais traduzido</span><span data-lang="en">languages in the<br>most localised app</span></dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<!-- =========================================================== apps -->
+<section id="apps">
+  <div class="wrap head reveal">
+    <p class="eyebrow"><span data-lang="pt">Projetos</span><span data-lang="en">Work</span></p>
+    <h2>
+      <span data-lang="pt">Três apps, três problemas diferentes.</span>
+      <span data-lang="en">Three apps, three different problems.</span>
+    </h2>
+    <p>
+      <span data-lang="pt">Em todos eles fiz o app inteiro: interface, regras, assinatura, widget, Apple Watch, testes, tradução e o material da loja.</span>
+      <span data-lang="en">In all of them I built the whole thing: interface, rules, subscriptions, widget, Apple Watch app, tests, localisation and the store material.</span>
+    </p>
+  </div>
+
+  <!-- ------------------------------------------------- KegelFlow -->
+  <article class="app" id="kegelflow">
+    <div class="wrap">
+      <div class="app__top reveal">
+        <img class="app__icon" src="assets/img/icon/kegelflow.webp" width="256" height="256"
+             alt="Ícone do app KegelFlow" data-alt-pt="Ícone do app KegelFlow" data-alt-en="KegelFlow app icon" loading="lazy">
+        <div class="app__id">
+          <p class="badge">
+            <span data-lang="pt">Na App Store · v2.0.0</span>
+            <span data-lang="en">On the App Store · v2.0.0</span>
+          </p>
+          <h3>KegelFlow</h3>
+          <p class="app__tagline">
+            <span data-lang="pt">Treinador de assoalho pélvico guiado. Cinco minutos por dia.</span>
+            <span data-lang="en">A guided pelvic floor trainer. Five minutes a day.</span>
+          </p>
         </div>
-    </nav>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="profile">
-            <div class="profile-pic"></div>
-            <span class="profile-name">Guilherme Quintero</span>
+      <div class="app__body">
+        <div class="reveal">
+          <p>
+            <span data-lang="pt">O KegelFlow já existia na App Store, escrito em Flutter, com usuários ativos e <strong>pagantes</strong>. A versão 2.0 é uma reescrita completa em Swift e SwiftUI — mas precisava sair sob o mesmo Bundle ID, na mesma listagem, e quem abrisse a atualização tinha que encontrar tudo exatamente onde deixou.</span>
+            <span data-lang="en">KegelFlow was already on the App Store, written in Flutter, with active — and <strong>paying</strong> — users. Version 2.0 is a full rewrite in Swift and SwiftUI, but it had to ship under the same Bundle ID, into the same listing, and anyone opening the update had to find everything exactly where they left it.</span>
+          </p>
+
+          <p class="pull">
+            <span data-lang="pt">Não existe passo de migração: os dados simplesmente já estão lá na primeira abertura.</span>
+            <span data-lang="en">There is no migration step: the data is simply already there on first launch.</span>
+          </p>
+
+          <p>
+            <span data-lang="pt">O plugin do Flutter gravava tudo em <code>UserDefaults</code>, prefixando cada chave com <code>flutter.</code> — em vez de escrever uma rotina de migração, que roda uma vez, pode falhar uma vez e falha calada, o app Swift passou a ler e gravar exatamente essas chaves, com o prefixo mantido para sempre. A assinatura veio junto de graça: mesmo Bundle ID e mesmos product IDs, e o StoreKit 2 reconhece o assinante antigo sozinho.</span>
+            <span data-lang="en">The Flutter plugin stored everything in <code>UserDefaults</code>, prefixing every key with <code>flutter.</code> — instead of writing a migration routine, which runs once, can fail once, and fails silently, the Swift app reads and writes those exact keys, prefix kept forever. The subscription came along for free: same Bundle ID and same product IDs, so StoreKit 2 recognises the existing subscriber on its own.</span>
+          </p>
+
+          <p>
+            <span data-lang="pt">A 2.0 ainda trouxe um app de Apple Watch que executa as rotinas reais guiadas por hápticos, widget de tela de início, Live Activity, Apple Health, Siri e iCloud — e saltou de 8 para <strong>30 idiomas</strong>, incluindo árabe com o layout inteiro espelhado.</span>
+            <span data-lang="en">2.0 also added an Apple Watch app that runs the real routines led by haptics, a Home Screen widget, Live Activity, Apple Health, Siri and iCloud — and took the app from 8 to <strong>30 languages</strong>, including Arabic with the whole layout mirrored.</span>
+          </p>
+
+          <div class="app__actions">
+            <a class="btn btn--accent" href="https://apps.apple.com/app/id6752828065" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.8c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.6 2.2-1.6 2.7-.4 6.7 1.1 8.9.7 1.1 1.6 2.3 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.9.7c1.2 0 1.9-1.1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.5-.1 0-2.2-.9-2.2-3.6zM14.2 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg>
+              <span data-lang="pt">Ver na App Store</span><span data-lang="en">View on the App Store</span>
+            </a>
+            <a class="btn btn--ghost" href="https://docs.google.com/document/d/1dUfNqSw2KHR6PW8IMfZ-RiWXp5UiYQ94sdmrx7h0_C8" target="_blank" rel="noopener">
+              <span data-lang="pt">Privacidade</span><span data-lang="en">Privacy policy</span>
+            </a>
+          </div>
         </div>
 
-        <h1>Desenvolvedor Front-End</h1>
+        <div class="reveal">
+          <div class="spec">
+            <dl>
+              <dt><span data-lang="pt">Plataformas</span><span data-lang="en">Platforms</span></dt>
+              <dd>iPhone · iPad · Watch</dd>
+              <dt><span data-lang="pt">Categoria</span><span data-lang="en">Category</span></dt>
+              <dd>Health &amp; Fitness</dd>
+              <dt><span data-lang="pt">Idiomas</span><span data-lang="en">Languages</span></dt>
+              <dd>30</dd>
+              <dt><span data-lang="pt">Linhas de Swift</span><span data-lang="en">Lines of Swift</span></dt>
+              <dd>~12.100</dd>
+              <dt><span data-lang="pt">Testes</span><span data-lang="en">Tests</span></dt>
+              <dd>281 + 67 UI</dd>
+              <dt><span data-lang="pt">Exercícios</span><span data-lang="en">Exercises</span></dt>
+              <dd><span data-lang="pt">45 em 23 rotinas</span><span data-lang="en">45 in 23 routines</span></dd>
+              <dt><span data-lang="pt">iOS mínimo</span><span data-lang="en">Minimum iOS</span></dt>
+              <dd>16.0 · 10,2 MB</dd>
+            </dl>
+          </div>
+          <div class="tags">
+            <span class="tag">SwiftUI</span><span class="tag">StoreKit 2</span><span class="tag">HealthKit</span>
+            <span class="tag">WidgetKit</span><span class="tag">ActivityKit</span><span class="tag">WatchConnectivity</span>
+            <span class="tag">App Intents</span><span class="tag">iCloud KVS</span><span class="tag">XCUITest</span>
+            <span class="tag">XcodeGen</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <p class="subtitle">
-            Transformando ideias em experiências<br>
-            digitais interativas e eficientes.
+    <div class="wrap">
+      <div class="gallery">
+        <figure class="shot"><div class="frame"><img src="assets/img/kegelflow/01.webp" width="540" height="1173" loading="lazy" alt="Tela inicial do KegelFlow" data-alt-pt="Tela inicial do KegelFlow" data-alt-en="KegelFlow home screen"></div>
+          <figcaption><span data-lang="pt">Início — anel do dia e ofensiva</span><span data-lang="en">Home — today's ring and your streak</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/kegelflow/02.webp" width="540" height="1173" loading="lazy" alt="Exercício guiado" data-alt-pt="Exercício guiado, fase de segurar" data-alt-en="Guided exercise, hold phase"></div>
+          <figcaption><span data-lang="pt">Exercício guiado, fase de segurar</span><span data-lang="en">Guided exercise, hold phase</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/kegelflow/03.webp" width="540" height="1173" loading="lazy" alt="Lista de rotinas" data-alt-pt="Rotinas por nível" data-alt-en="Routines by level"></div>
+          <figcaption><span data-lang="pt">23 rotinas em 4 níveis</span><span data-lang="en">23 routines across 4 levels</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/kegelflow/04.webp" width="540" height="1173" loading="lazy" alt="Calendário do histórico" data-alt-pt="Calendário mensal do histórico" data-alt-en="Monthly history calendar"></div>
+          <figcaption><span data-lang="pt">Histórico — calendário mensal</span><span data-lang="en">History — monthly calendar</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/kegelflow/05.webp" width="540" height="1173" loading="lazy" alt="Gráfico semanal" data-alt-pt="Gráfico semanal por nível" data-alt-en="Weekly chart by level"></div>
+          <figcaption><span data-lang="pt">A semana, separada por nível</span><span data-lang="en">The week, broken down by level</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/kegelflow/06.webp" width="540" height="1173" loading="lazy" alt="Seletor de idiomas" data-alt-pt="Seletor com 30 idiomas" data-alt-en="Language picker with 30 languages"></div>
+          <figcaption><span data-lang="pt">30 idiomas, trocáveis dentro do app</span><span data-lang="en">30 languages, switchable in-app</span></figcaption></figure>
+        <figure class="shot" style="width:clamp(150px,32vw,186px)"><div class="frame frame--watch"><img src="assets/img/kegelflow/watch-01.webp" width="330" height="393" loading="lazy" alt="Apple Watch" data-alt-pt="Tela inicial no Apple Watch" data-alt-en="Apple Watch home screen"></div>
+          <figcaption><span data-lang="pt">Apple Watch — início</span><span data-lang="en">Apple Watch — home</span></figcaption></figure>
+        <figure class="shot" style="width:clamp(150px,32vw,186px)"><div class="frame frame--watch"><img src="assets/img/kegelflow/watch-02.webp" width="330" height="393" loading="lazy" alt="Sessão no Apple Watch" data-alt-pt="Sessão guiada no Apple Watch" data-alt-en="Guided session on Apple Watch"></div>
+          <figcaption><span data-lang="pt">Sessão guiada por hápticos</span><span data-lang="en">A session led by haptics</span></figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- ---------------------------------------------------- Flash's -->
+  <article class="app" id="flashs">
+    <div class="wrap">
+      <div class="app__top reveal">
+        <img class="app__icon" src="assets/img/icon/flashs.webp" width="256" height="256"
+             alt="Ícone do app Flash's" data-alt-pt="Ícone do app Flash's" data-alt-en="Flash's app icon" loading="lazy">
+        <div class="app__id">
+          <p class="badge">
+            <span data-lang="pt">Na App Store · v1.1</span>
+            <span data-lang="en">On the App Store · v1.1</span>
+          </p>
+          <h3>Flash&rsquo;s</h3>
+          <p class="app__tagline">
+            <span data-lang="pt">Flashcards com repetição espaçada. Estude menos, lembre mais.</span>
+            <span data-lang="en">Study smarter with flashcards.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="app__body">
+        <div class="reveal">
+          <p>
+            <span data-lang="pt">O Flash's usa o algoritmo <strong>SM-2</strong> de repetição espaçada para mostrar cada carta no momento exato em que você está prestes a esquecê-la. Você avalia o quanto lembrou — <em>Again, Hard, Good, Easy</em> — e o app agenda a próxima revisão sozinho: o que você domina vai para semanas à frente, o que trava volta amanhã.</span>
+            <span data-lang="en">Flash's uses the <strong>SM-2</strong> spaced repetition algorithm to show each card at the exact moment you are about to forget it. You rate your recall — <em>Again, Hard, Good, Easy</em> — and the app schedules the next review on its own: cards you know are pushed weeks ahead, cards you struggle with come back tomorrow.</span>
+          </p>
+
+          <p>
+            <span data-lang="pt">Além dos decks próprios, ele importa baralhos do <strong>Anki</strong>, gera áudio de pronúncia por text-to-speech, aceita gravação da própria voz, funciona offline e sincroniza na nuvem. Para quem está aprendendo um idioma, a loja de módulos traz vocabulário organizado por nível, com áudio nativo.</span>
+            <span data-lang="en">Beyond your own decks, it imports <strong>Anki</strong> decks, generates pronunciation audio with text-to-speech, records your own voice, works offline and syncs to the cloud. For language learners, the study store offers vocabulary organised by level, with native audio.</span>
+          </p>
+
+          <p class="pull">
+            <span data-lang="pt">Nota honesta: a versão publicada hoje (1.1) ainda é a build em Flutter. O port nativo em SwiftUI está pronto na 1.2.0 — com a navegação redesenhada em três abas — mas ainda não foi enviado para a loja. As imagens abaixo são da geração publicada.</span>
+            <span data-lang="en">An honest note: the version on the store today (1.1) is still the Flutter build. The native SwiftUI port is finished at 1.2.0 — with the navigation redesigned into three tabs — but it has not been submitted yet. The images below are from the published generation.</span>
+          </p>
+
+          <div class="app__actions">
+            <a class="btn btn--accent" href="https://apps.apple.com/app/id6760672572" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.8c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.6 2.2-1.6 2.7-.4 6.7 1.1 8.9.7 1.1 1.6 2.3 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.9.7c1.2 0 1.9-1.1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.5-.1 0-2.2-.9-2.2-3.6zM14.2 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg>
+              <span data-lang="pt">Ver na App Store</span><span data-lang="en">View on the App Store</span>
+            </a>
+            <a class="btn btn--ghost" href="https://docs.google.com/document/d/1gKoAU7_2X0z3_qkS0g7CfSp0l1l-Yw-FbnIrjMttV2A/edit?usp=sharing" target="_blank" rel="noopener">
+              <span data-lang="pt">Privacidade</span><span data-lang="en">Privacy policy</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="spec">
+            <dl>
+              <dt><span data-lang="pt">Plataformas</span><span data-lang="en">Platforms</span></dt>
+              <dd>iPhone · iPad · Mac · Vision</dd>
+              <dt><span data-lang="pt">Categoria</span><span data-lang="en">Category</span></dt>
+              <dd>Education</dd>
+              <dt><span data-lang="pt">Algoritmo</span><span data-lang="en">Algorithm</span></dt>
+              <dd>SM-2</dd>
+              <dt><span data-lang="pt">Importação</span><span data-lang="en">Import</span></dt>
+              <dd>Anki</dd>
+              <dt><span data-lang="pt">Publicado</span><span data-lang="en">Released</span></dt>
+              <dd><span data-lang="pt">maio de 2026</span><span data-lang="en">May 2026</span></dd>
+              <dt><span data-lang="pt">iOS mínimo</span><span data-lang="en">Minimum iOS</span></dt>
+              <dd>13.0 · 40,8 MB</dd>
+            </dl>
+          </div>
+          <div class="tags">
+            <span class="tag">SwiftUI</span><span class="tag">spaced repetition</span><span class="tag">SM-2</span>
+            <span class="tag">Anki import</span><span class="tag">text-to-speech</span><span class="tag">offline-first</span>
+            <span class="tag">cloud sync</span><span class="tag">StoreKit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="gallery gallery--panels">
+        <figure class="shot panel"><img src="assets/img/flashs/01.webp" width="600" height="1298" loading="lazy" alt="Painel da App Store do Flash's" data-alt-pt="Painel da App Store: todos os seus decks" data-alt-en="App Store panel: all your decks">
+          <figcaption><span data-lang="pt">Todos os seus decks, a um toque</span><span data-lang="en">All your decks, one tap away</span></figcaption></figure>
+        <figure class="shot panel"><img src="assets/img/flashs/02.webp" width="600" height="1298" loading="lazy" alt="Painel da App Store do Flash's" data-alt-pt="Painel da App Store: ofensiva e estatísticas" data-alt-en="App Store panel: streak and stats">
+          <figcaption><span data-lang="pt">Veja a ofensiva pegar fogo</span><span data-lang="en">Watch your streak catch fire</span></figcaption></figure>
+        <figure class="shot panel"><img src="assets/img/flashs/03.webp" width="600" height="1298" loading="lazy" alt="Painel da App Store do Flash's" data-alt-pt="Painel da App Store: criar um deck" data-alt-en="App Store panel: build a deck">
+          <figcaption><span data-lang="pt">Monte um deck em segundos</span><span data-lang="en">Build a deck in seconds</span></figcaption></figure>
+        <figure class="shot panel"><img src="assets/img/flashs/04.webp" width="600" height="1298" loading="lazy" alt="Painel da App Store do Flash's" data-alt-pt="Painel da App Store: biblioteca de cartas" data-alt-en="App Store panel: card library">
+          <figcaption><span data-lang="pt">Cada carta, num relance</span><span data-lang="en">Every card, at a glance</span></figcaption></figure>
+        <figure class="shot panel"><img src="assets/img/flashs/05.webp" width="600" height="1298" loading="lazy" alt="Painel da App Store do Flash's" data-alt-pt="Painel da App Store: sessão de revisão" data-alt-en="App Store panel: review session">
+          <figcaption><span data-lang="pt">Recall ativo, não rolagem passiva</span><span data-lang="en">Active recall, not passive scrolling</span></figcaption></figure>
+        <figure class="shot panel"><img src="assets/img/flashs/06.webp" width="600" height="1298" loading="lazy" alt="Painel da App Store do Flash's" data-alt-pt="Painel da App Store: meta diária concluída" data-alt-en="App Store panel: daily goal complete">
+          <figcaption><span data-lang="pt">Bata a meta do dia</span><span data-lang="en">Crush your daily goal</span></figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- -------------------------------------------------- Fruitsful -->
+  <article class="app" id="fruitsful">
+    <div class="wrap">
+      <div class="app__top reveal">
+        <img class="app__icon" src="assets/img/icon/fruitsful.webp" width="256" height="256"
+             alt="Ícone do app Fruitsful" data-alt-pt="Ícone do app Fruitsful" data-alt-en="Fruitsful app icon" loading="lazy">
+        <div class="app__id">
+          <p class="badge badge--soon">
+            <span data-lang="pt">Em revisão · lançamento previsto</span>
+            <span data-lang="en">In review · launching soon</span>
+          </p>
+          <h3>Fruitsful</h3>
+          <p class="app__tagline">
+            <span data-lang="pt">Transforme foco em fruta. Um timer Pomodoro que deixa rastro.</span>
+            <span data-lang="en">Turn focus into fruit. A Pomodoro timer that leaves a trace.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="app__body">
+        <div class="reveal">
+          <p>
+            <span data-lang="pt">Todo timer de foco mostra a mesma coisa: um número que desce e depois some. No Fruitsful, cada sessão concluída faz nascer uma fruta desenhada à mão. Ela cai do topo da tela, quica e se acomoda entre as outras no rodapé — <strong>física 2D de verdade</strong> com SpriteKit, não uma figura. Incline o iPhone e a colheita inteira rola.</span>
+            <span data-lang="en">Every focus timer shows you the same thing: a number that counts down and then disappears. In Fruitsful, each finished session grows a hand-drawn fruit. It falls from the top of the screen, bounces, and settles among the others at the bottom — <strong>real 2D physics</strong> with SpriteKit, not a picture. Tilt the phone and the whole harvest rolls.</span>
+          </p>
+
+          <p class="pull">
+            <span data-lang="pt">Desistir no meio derruba uma fruta podre — e ela fica lá, junto com as outras.</span>
+            <span data-lang="en">Give up halfway and a rotten one drops instead — and it stays there, with the rest.</span>
+          </p>
+
+          <p>
+            <span data-lang="pt">O app nunca prende o usuário: desistir é sempre possível, e a fruta podre é a consequência, não uma porta trancada. O tamanho de cada fruta é o tempo realmente focado, e a pilha se reconstrói a partir do período escolhido — ela <em>é</em> o histórico.</span>
+            <span data-lang="en">The app never locks you in: giving up is always possible, and the rotten fruit is the consequence, not a locked door. The size of each fruit is the time actually focused, and the pile rebuilds itself from the period you pick — the pile <em>is</em> the history.</span>
+          </p>
+
+          <p>
+            <span data-lang="pt">Por baixo: o tempo decorrido é o <strong>menor</strong> entre o relógio e um contador monotônico, então adiantar o relógio do aparelho não inventa horas de estudo. Cada sessão guarda o fuso em que foi feita, para que viajar não reescreva o histórico. Sessão que cruza a meia-noite é repartida entre os dois dias. E o status da assinatura nunca é uma flag salva — é sempre derivado das entitlements vivas da StoreKit.</span>
+            <span data-lang="en">Underneath: elapsed time is the <strong>smaller</strong> of wall clock and a monotonic counter, so winding the device clock forward does not invent hours of study. Each session stores the timezone it happened in, so travelling never rewrites your history. A session crossing midnight is split between both days. And subscription status is never a saved flag — it is always derived from StoreKit's live entitlements.</span>
+          </p>
+
+          <div class="app__actions">
+            <span class="btn btn--ghost" aria-disabled="true" style="opacity:.55;cursor:default">
+              <span data-lang="pt">Ainda não publicado</span><span data-lang="en">Not published yet</span>
+            </span>
+            <a class="btn btn--ghost" href="https://docs.google.com/document/d/1QP_hGoMEjz83v1z6tU6rNclXr6HXV7RWpG_iW6KKMd0/preview" target="_blank" rel="noopener">
+              <span data-lang="pt">Privacidade</span><span data-lang="en">Privacy policy</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="spec">
+            <dl>
+              <dt><span data-lang="pt">Plataformas</span><span data-lang="en">Platforms</span></dt>
+              <dd>iPhone · iPad · Watch</dd>
+              <dt><span data-lang="pt">Idiomas</span><span data-lang="en">Languages</span></dt>
+              <dd>50</dd>
+              <dt><span data-lang="pt">Linhas de Swift</span><span data-lang="en">Lines of Swift</span></dt>
+              <dd>~17.800</dd>
+              <dt><span data-lang="pt">Testes</span><span data-lang="en">Tests</span></dt>
+              <dd>157</dd>
+              <dt>Targets</dt>
+              <dd>4</dd>
+              <dt><span data-lang="pt">Conteúdo</span><span data-lang="en">Content</span></dt>
+              <dd><span data-lang="pt">15 frutas · 29 medalhas</span><span data-lang="en">15 fruits · 29 medals</span></dd>
+              <dt><span data-lang="pt">iOS mínimo</span><span data-lang="en">Minimum iOS</span></dt>
+              <dd>17.0</dd>
+            </dl>
+          </div>
+          <div class="tags">
+            <span class="tag">SwiftUI</span><span class="tag">SwiftData</span><span class="tag">SpriteKit</span>
+            <span class="tag">CoreMotion</span><span class="tag">StoreKit 2</span><span class="tag">AlarmKit</span>
+            <span class="tag">FamilyControls</span><span class="tag">ActivityKit</span><span class="tag">WidgetKit</span>
+            <span class="tag">HealthKit</span><span class="tag">EventKit</span><span class="tag">Swift Charts</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="harvest reveal">
+        <div class="harvest__row">
+          <img src="assets/img/fruit/strawberry.webp" alt="" width="128" height="168" loading="lazy">
+          <img src="assets/img/fruit/orange.webp" alt="" width="128" height="130" loading="lazy">
+          <img src="assets/img/fruit/lemon.webp" alt="" width="128" height="182" loading="lazy">
+          <img src="assets/img/fruit/watermelon.webp" alt="" width="128" height="137" loading="lazy">
+          <img src="assets/img/fruit/peach.webp" alt="" width="128" height="130" loading="lazy">
+          <img src="assets/img/fruit/pear.webp" alt="" width="128" height="179" loading="lazy">
+          <img src="assets/img/fruit/tomato.webp" alt="" width="128" height="124" loading="lazy">
+          <img src="assets/img/fruit/apple.webp" alt="" width="128" height="134" loading="lazy">
+          <img src="assets/img/fruit/banana.webp" alt="" width="128" height="130" loading="lazy">
+          <img src="assets/img/fruit/blueberry.webp" alt="" width="128" height="126" loading="lazy">
+          <img src="assets/img/fruit/cherry.webp" alt="" width="128" height="130" loading="lazy">
+          <img src="assets/img/fruit/grapes.webp" alt="" width="128" height="130" loading="lazy">
+          <img src="assets/img/fruit/kiwi.webp" alt="" width="128" height="128" loading="lazy">
+          <img src="assets/img/fruit/pineapple.webp" alt="" width="128" height="183" loading="lazy">
+          <img src="assets/img/fruit/avocado.webp" alt="" width="128" height="159" loading="lazy">
+        </div>
+        <p>
+          <span data-lang="pt">As 15 frutas, desenhadas à mão — cada uma com um estado feliz e um podre.</span>
+          <span data-lang="en">The 15 hand-drawn fruits — each with a happy state and a rotten one.</span>
         </p>
+      </div>
+    </div>
 
-        <a href="#contato" class="cta-button">Vamos conversar</a>
+    <div class="wrap">
+      <div class="gallery">
+        <figure class="shot"><div class="frame"><img src="assets/img/fruitsful/01.webp" width="540" height="1174" loading="lazy" alt="Sessão de foco" data-alt-pt="Sessão de foco em andamento" data-alt-en="A focus session running"></div>
+          <figcaption><span data-lang="pt">Sessão em andamento — tela em silêncio</span><span data-lang="en">A session running — a quiet screen</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/fruitsful/02.webp" width="540" height="1174" loading="lazy" alt="Overtime" data-alt-pt="Overtime: contagem além do zero" data-alt-en="Overtime: counting past zero"></div>
+          <figcaption><span data-lang="pt">Overtime: passou do 0:00 e continua</span><span data-lang="en">Overtime: past 0:00 and still counting</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/fruitsful/03.webp" width="540" height="1174" loading="lazy" alt="Fruta podre" data-alt-pt="Aviso da fruta podre" data-alt-en="The rotten fruit notice"></div>
+          <figcaption><span data-lang="pt">O aviso da fruta podre</span><span data-lang="en">The rotten fruit notice</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/fruitsful/04.webp" width="540" height="1174" loading="lazy" alt="Estatísticas" data-alt-pt="Estatísticas do dia" data-alt-en="Today's statistics"></div>
+          <figcaption><span data-lang="pt">Estatísticas do dia</span><span data-lang="en">Today's statistics</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/fruitsful/05.webp" width="540" height="1174" loading="lazy" alt="Timeline" data-alt-pt="Timeline do calendário" data-alt-en="The calendar timeline"></div>
+          <figcaption><span data-lang="pt">Timeline do calendário</span><span data-lang="en">The calendar timeline</span></figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="assets/img/fruitsful/06.webp" width="540" height="1174" loading="lazy" alt="Conquistas" data-alt-pt="Medalhas e conquistas" data-alt-en="Medals and achievements"></div>
+          <figcaption><span data-lang="pt">29 medalhas em cinco categorias</span><span data-lang="en">29 medals across five categories</span></figcaption></figure>
+      </div>
+    </div>
+  </article>
+</section>
 
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <polyline points="19 12 12 19 5 12"></polyline>
-            </svg>
-        </div>
-    </section>
+<!-- ========================================================== sobre -->
+<section id="sobre">
+  <div class="wrap head reveal">
+    <p class="eyebrow"><span data-lang="pt">Sobre</span><span data-lang="en">About</span></p>
+    <h2>
+      <span data-lang="pt">Faço o app inteiro, não só a tela.</span>
+      <span data-lang="en">I build the whole app, not just the screen.</span>
+    </h2>
+  </div>
 
-    <!-- Section Em Desenvolvimento -->
-    <section id="projetos" class="dev-section">
-        <div class="dev-container">
-            <div class="dev-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-            </div>
+  <div class="wrap about__grid">
+    <div class="reveal">
+      <p>
+        <span data-lang="pt">Sou <strong>Guilherme Quintero Lorenzi</strong>, desenvolvedor iOS. Trabalho em Swift e SwiftUI, e o que me interessa é justamente a parte que costuma ficar de fora do portfólio: a assinatura que se re-trava sozinha quando vence, a sessão que sobrevive ao app fechado e ao aparelho reiniciando, o fuso horário que viaja junto com o registro, o teste que reprova de propósito enquanto uma pendência de lançamento existir.</span>
+        <span data-lang="en">I'm <strong>Guilherme Quintero Lorenzi</strong>, an iOS developer. I work in Swift and SwiftUI, and what interests me is exactly the part that usually gets left out of a portfolio: the subscription that re-locks itself when it lapses, the session that survives the app being killed and the phone restarting, the timezone that travels with the record, the test that fails on purpose while a release blocker is still in place.</span>
+      </p>
+      <p>
+        <span data-lang="pt">Também cuido do que vai para a loja. As imagens da App Store dos meus apps são <strong>geradas por código</strong> — 390 no KegelFlow, em 30 idiomas — a partir de telas capturadas por um teste que navega pelo app sozinho, por rótulo de acessibilidade e não por coordenada. A tradução segue a mesma regra: texto novo só está pronto quando existe em todos os idiomas, e o script recusa tradução cujos especificadores de formato não batam com o original.</span>
+        <span data-lang="en">I also handle what goes to the store. The App Store artwork for my apps is <strong>generated by code</strong> — 390 images for KegelFlow, across 30 languages — from screens captured by a test that drives the app on its own, by accessibility label rather than by coordinate. Localisation follows the same rule: new text is only done when it exists in every language, and the script rejects translations whose format specifiers don't match the original.</span>
+      </p>
+      <p>
+        <span data-lang="pt">Nenhum dos apps tem conta, login ou servidor próprio. Os dados ficam no aparelho e, quando o usuário liga a sincronização, no iCloud dele.</span>
+        <span data-lang="en">None of the apps has an account, a login or a server of my own. Data lives on the device and, when the user turns sync on, in their own iCloud.</span>
+      </p>
+    </div>
 
-            <h2>Em Desenvolvimento</h2>
-            <p>
-                Estou trabalhando em algo incrível! Esta seção em breve apresentará 
-                projetos inovadores, estudos de caso detalhados e demonstrações 
-                interativas do meu trabalho.
-            </p>
+    <div class="stack reveal">
+      <div class="stack__row"><b><span data-lang="pt">Linguagem</span><span data-lang="en">Language</span></b><span>Swift 5 · SwiftUI · MVVM com <code>@Observable</code></span></div>
+      <div class="stack__row"><b><span data-lang="pt">Dados</span><span data-lang="en">Data</span></b><span>SwiftData · UserDefaults · iCloud / CloudKit · KVS</span></div>
+      <div class="stack__row"><b><span data-lang="pt">Sistema</span><span data-lang="en">System</span></b><span>WidgetKit · ActivityKit · HealthKit · EventKit · AlarmKit · App Intents · FamilyControls</span></div>
+      <div class="stack__row"><b>Apple Watch</b><span>WatchConnectivity · WKExtendedRuntimeSession</span></div>
+      <div class="stack__row"><b><span data-lang="pt">Gráficos</span><span data-lang="en">Graphics</span></b><span>SpriteKit · CoreMotion · Swift Charts</span></div>
+      <div class="stack__row"><b><span data-lang="pt">Compras</span><span data-lang="en">Purchases</span></b><span>StoreKit 2</span></div>
+      <div class="stack__row"><b><span data-lang="pt">Testes</span><span data-lang="en">Testing</span></b><span>XCTest · XCUITest · release gates</span></div>
+      <div class="stack__row"><b><span data-lang="pt">Ferramentas</span><span data-lang="en">Tooling</span></b><span>XcodeGen · Fastlane · Python</span></div>
+    </div>
+  </div>
+</section>
 
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Design Moderno</h3>
-                    <p>Interfaces elegantes com foco na experiência do usuário</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Performance</h3>
-                    <p>Código otimizado para carregamento rápido e eficiente</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Responsivo</h3>
-                    <p>Funciona perfeitamente em todos os dispositivos</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ======================================================== suporte -->
+<section id="suporte" class="support">
+  <div class="wrap head reveal">
+    <p class="eyebrow"><span data-lang="pt">Suporte</span><span data-lang="en">Support</span></p>
+    <h2>
+      <span data-lang="pt">Precisa de ajuda com um dos apps?</span>
+      <span data-lang="en">Need help with one of the apps?</span>
+    </h2>
+    <p>
+      <span data-lang="pt">Fale direto comigo. Respondo em português ou inglês, normalmente em até 48 horas úteis.</span>
+      <span data-lang="en">Write to me directly. I answer in English or Portuguese, usually within two business days.</span>
+    </p>
+  </div>
 
-    <script>
-        // Smooth scroll para os links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <div class="wrap">
+    <div class="mailbox reveal">
+      <div>
+        <p class="mailbox__label"><span data-lang="pt">E-mail de suporte</span><span data-lang="en">Support email</span></p>
+        <a class="mailbox__mail" href="mailto:guilorenzi04@gmail.com">guilorenzi04@gmail.com</a>
+      </div>
+      <div class="app__actions" style="margin:0">
+        <a class="btn btn--primary" href="mailto:guilorenzi04@gmail.com">
+          <span data-lang="pt">Escrever agora</span><span data-lang="en">Write now</span>
+        </a>
+        <button class="btn btn--ghost" type="button" data-copy="guilorenzi04@gmail.com">
+          <span data-lang="pt">Copiar</span><span data-lang="en">Copy</span>
+        </button>
+      </div>
+    </div>
 
-        // Parallax suave no scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const blurs = document.querySelectorAll('.blur-circle');
-            blurs.forEach((blur, index) => {
-                const speed = (index + 1) * 0.5;
-                blur.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-    </script>
+    <div class="support__grid reveal">
+      <div class="card">
+        <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4z"/></svg></div>
+        <h3><span data-lang="pt">O que incluir</span><span data-lang="en">What to include</span></h3>
+        <p><span data-lang="pt">O nome do app, a versão do iOS e o modelo do aparelho. Se for um erro, uma captura de tela ajuda muito.</span>
+           <span data-lang="en">The app name, your iOS version and device model. If it's a bug, a screenshot helps a lot.</span></p>
+      </div>
+      <div class="card">
+        <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z"/></svg></div>
+        <h3><span data-lang="pt">Privacidade</span><span data-lang="en">Privacy</span></h3>
+        <p><span data-lang="pt">Nenhum app pede cadastro. Seus dados ficam no aparelho e, se você ligar a sincronização, no seu próprio iCloud.</span>
+           <span data-lang="en">None of the apps asks you to sign up. Your data stays on your device and, if you turn sync on, in your own iCloud.</span></p>
+      </div>
+      <div class="card">
+        <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v11H3z"/><path d="M3 11h18"/></svg></div>
+        <h3><span data-lang="pt">Assinaturas</span><span data-lang="en">Subscriptions</span></h3>
+        <p><span data-lang="pt">Compras e cancelamentos são geridos pela Apple, nas configurações da sua conta da App Store — não tenho acesso aos seus dados de pagamento.</span>
+           <span data-lang="en">Purchases and cancellations are handled by Apple, in your App Store account settings — I have no access to your payment details.</span></p>
+      </div>
+    </div>
+
+    <div class="app__actions reveal" style="margin-top:26px">
+      <a class="btn btn--ghost" href="suporte.html">
+        <span data-lang="pt">Página completa de suporte</span><span data-lang="en">Full support page</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ========================================================= rodapé -->
+<footer>
+  <div class="wrap foot">
+    <p>© <span data-year>2026</span> Guilherme Quintero Lorenzi</p>
+    <nav>
+      <a href="#apps">Apps</a>
+      <a href="#sobre"><span data-lang="pt">Sobre</span><span data-lang="en">About</span></a>
+      <a href="suporte.html"><span data-lang="pt">Suporte</span><span data-lang="en">Support</span></a>
+      <a href="mailto:guilorenzi04@gmail.com">guilorenzi04@gmail.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
