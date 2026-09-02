@@ -228,6 +228,7 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
 #kegelflow { --accent: #ff7a45; --accent-ink: #24100a; }
 #flashs    { --accent: #ffd250; --accent-ink: #241d05; }
 #fruitsful { --accent: #6fbf3a; --accent-ink: #0d1c06; }
+#puzzle    { --accent: #4cc46a; --accent-ink: #06180d; }
 
 .app__top { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
 
@@ -338,6 +339,12 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
 .harvest__row img:hover { transform: translateY(-7px) rotate(-5deg); }
 .harvest p { margin-top: 18px; text-align: center; font-size: 13.5px; color: var(--faint); }
 
+/* faixa de artes do Puzzle: quadrados, e por isso maiores que as frutas recortadas */
+.harvest--arte .harvest__row img {
+  height: clamp(46px, 7vw, 66px); border-radius: 9px;
+  border: 1px solid var(--line);
+}
+
 /* ---------------------------------------------------------- 9. o autor */
 .about__grid {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .78fr);
@@ -428,7 +435,56 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
 .faq details > div { padding: 0 20px 19px; color: var(--muted); font-size: 15px; }
 .faq a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
-/* --------------------------------------------------------- 11. rodapé */
+/* --------------------------------------------------- 11. páginas legais */
+.legal { max-width: 780px; }
+.legal__meta {
+  display: flex; flex-wrap: wrap; gap: 8px 26px; margin-bottom: 8px;
+  font-size: 13px; color: var(--faint);
+}
+.legal__meta b { color: var(--muted); font-weight: 600; }
+
+/* sumário: as âncoras do documento, para não rolar às cegas */
+.legal__toc {
+  border: 1px solid var(--line); border-radius: var(--r); background: var(--bg-2);
+  padding: 22px 24px; margin-bottom: 40px;
+}
+.legal__toc p {
+  font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--faint); margin-bottom: 14px;
+}
+.legal__toc ol {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 9px 26px; padding-left: 18px;
+}
+.legal__toc li::marker { color: var(--faint); font-size: 13px; }
+.legal__toc a { font-size: 14.5px; color: #c8c8d0; }
+.legal__toc a:hover { color: var(--accent); }
+
+.legal h3 {
+  font-size: clamp(19px, 2.6vw, 24px); margin: 46px 0 14px;
+  scroll-margin-top: 110px;
+}
+.legal h3:first-of-type { margin-top: 0; }
+.legal p, .legal li { color: #c8c8d0; font-size: 15.5px; }
+.legal p + p, .legal ul + p { margin-top: 14px; }
+.legal ul { margin-top: 14px; padding-left: 20px; display: grid; gap: 9px; }
+.legal li::marker { color: var(--accent); }
+.legal strong { color: var(--text); font-weight: 600; }
+.legal a:not(.btn) {
+  color: var(--accent); text-decoration: underline; text-underline-offset: 3px;
+  word-break: break-word;
+}
+
+/* caixa de resumo do topo: o essencial antes do texto longo */
+.legal__gist {
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: var(--r); padding: 24px 26px; margin-bottom: 12px;
+  background: linear-gradient(150deg,
+              color-mix(in srgb, var(--accent) 9%, var(--bg-2)), var(--bg-2) 62%);
+}
+.legal__gist p { color: var(--text); }
+
+/* --------------------------------------------------------- 12. rodapé */
 footer {
   border-top: 1px solid var(--line); margin-top: clamp(70px, 10vw, 120px);
   padding: 46px 0 40px; position: relative; z-index: 2;
@@ -441,14 +497,14 @@ footer {
 .foot a:hover { color: var(--text); }
 .foot nav { display: flex; flex-wrap: wrap; gap: 20px; }
 
-/* ----------------------------------------------- 12. entrada por scroll */
+/* ----------------------------------------------- 13. entrada por scroll */
 .reveal { opacity: 0; transform: translateY(22px); }
 .reveal.in {
   opacity: 1; transform: none;
   transition: opacity .75s var(--ease), transform .75s var(--ease);
 }
 
-/* ----------------------------------------------------- 13. responsivo */
+/* ----------------------------------------------------- 14. responsivo */
 @media (max-width: 900px) {
   .app__body, .about__grid { grid-template-columns: 1fr; }
   .figures { grid-template-columns: repeat(2, 1fr); }
@@ -473,7 +529,7 @@ footer {
   .nav__links a[data-nav="sobre"] { display: none; }
 }
 
-/* ------------------------------------------- 14. movimento e impressão */
+/* ------------------------------------------- 15. movimento e impressão */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
