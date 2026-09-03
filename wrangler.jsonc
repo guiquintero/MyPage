@@ -1,0 +1,20 @@
+{
+  // ⚠️ O "name" TEM de ser igual ao nome do projeto no painel do Cloudflare
+  // (Workers & Pages → o projeto ligado a guilhermequinterolorenzi.com).
+  // Se nao bater, o "npx wrangler deploy" cria um Worker NOVO em vez de
+  // atualizar o que tem o dominio, e o site continua na mesma.
+  "name": "mypage",
+
+  "compatibility_date": "2026-09-03",
+
+  // Site estatico puro: nao ha codigo a correr, so ficheiros a servir.
+  // A pasta e a raiz do repositorio, que e onde os .html vivem.
+  "assets": {
+    "directory": "./",
+    // Faz /puzzle-termos servir puzzle-termos.html e /puzzle-termos.html
+    // redirecionar para a forma sem extensao — o comportamento que o site ja tem.
+    "html_handling": "auto-trailing-slash",
+    // "404-page" exigiria um 404.html na raiz, que nao existe.
+    "not_found_handling": "none"
+  }
+}
