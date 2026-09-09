@@ -82,6 +82,7 @@
         <li><a href="#aparelho"><span data-lang="pt">O que fica no seu aparelho</span><span data-lang="en">What stays on your device</span></a></li>
         <li><a href="#vicios"><span data-lang="pt">Sobre a lista do que você está largando</span><span data-lang="en">About the list of what you are quitting</span></a></li>
         <li><a href="#compras"><span data-lang="pt">Assinaturas e compras</span><span data-lang="en">Subscriptions and purchases</span></a></li>
+        <li><a href="#permissoes"><span data-lang="pt">Notificações, widget e compartilhamento</span><span data-lang="en">Notifications, widget and sharing</span></a></li>
         <li><a href="#falhas"><span data-lang="pt">Relatórios de falha</span><span data-lang="en">Crash reports</span></a></li>
         <li><a href="#naofaz"><span data-lang="pt">O que o app não faz</span><span data-lang="en">What the app does not do</span></a></li>
         <li><a href="#criancas"><span data-lang="pt">Crianças</span><span data-lang="en">Children</span></a></li>
@@ -110,6 +111,8 @@
           <span data-lang="en"><strong>What you ticked each day</strong> — that is where the streak, the perfect days, the XP and the island level come from. None of it is stored separately: it is always recomputed from the ticks.</span></li>
       <li><span data-lang="pt"><strong>O seu nome, a aparência e o idioma escolhidos.</strong></span>
           <span data-lang="en"><strong>Your name, and the appearance and language you chose.</strong></span></li>
+      <li><span data-lang="pt"><strong>As suas preferências de lembrete</strong> — se cada tipo está ligado e a que horas.</span>
+          <span data-lang="en"><strong>Your reminder preferences</strong> — whether each type is on, and at what time.</span></li>
     </ul>
     <p>
       <span data-lang="pt">Tudo isso fica num banco de dados local (SwiftData) dentro do espaço do app no aparelho. Não há sincronização por iCloud nesta versão: o que está num iPhone não aparece noutro, e apagar o app apaga tudo.</span>
@@ -122,15 +125,28 @@
     </p>
     <h3 id="compras">5. <span data-lang="pt">Assinaturas e compras</span><span data-lang="en">Subscriptions and purchases</span></h3>
     <p>
-      <span data-lang="pt">O LevelGrip Pro é vendido pela <strong>Apple</strong>, através da App Store. A Apple processa o pagamento; eu <strong>nunca</strong> vejo o seu cartão, o seu endereço de cobrança nem a sua conta Apple. O app apenas pergunta ao sistema se a sua assinatura está ativa e recebe de volta um sim ou um não. Os relatórios de vendas que a Apple me disponibiliza são agregados e não identificam ninguém. O tratamento desses dados é regido pela <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">política de privacidade da Apple</a>.</span>
-      <span data-lang="en">LevelGrip Pro is sold by <strong>Apple</strong>, through the App Store. Apple handles the payment; I <strong>never</strong> see your card, your billing address or your Apple Account. The app only asks the system whether your subscription is currently active and gets back a yes or a no. The sales reports Apple makes available to me are aggregated and identify nobody. That data is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy</a>.</span>
+      <span data-lang="pt">O LevelGrip Pro é vendido pela <strong>Apple</strong>, através da App Store, como assinatura mensal ou anual, ou como compra única vitalícia. A Apple processa o pagamento; eu <strong>nunca</strong> vejo o seu cartão, o seu endereço de cobrança nem a sua conta Apple. O app apenas pergunta ao sistema se a sua assinatura está ativa e recebe de volta um sim ou um não. Os relatórios de vendas que a Apple me disponibiliza são agregados e não identificam ninguém. O tratamento desses dados é regido pela <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">política de privacidade da Apple</a>.</span>
+      <span data-lang="en">LevelGrip Pro is sold by <strong>Apple</strong>, through the App Store, as a monthly or yearly subscription, or as a one-time lifetime purchase. Apple handles the payment; I <strong>never</strong> see your card, your billing address or your Apple Account. The app only asks the system whether your subscription is currently active and gets back a yes or a no. The sales reports Apple makes available to me are aggregated and identify nobody. That data is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's privacy policy</a>.</span>
     </p>
-    <h3 id="falhas">6. <span data-lang="pt">Relatórios de falha</span><span data-lang="en">Crash reports</span></h3>
+    <h3 id="permissoes">6. <span data-lang="pt">Notificações, widget e compartilhamento</span><span data-lang="en">Notifications, widget and sharing</span></h3>
+    <p>
+      <span data-lang="pt"><strong>Notificações.</strong> O app pode lembrar você da rotina no horário que você escolher, e avisar no fim do dia quando a sequência está em risco. A permissão só é pedida depois que você já usou o app, nunca no primeiro lançamento, e recusar não tira nada do resto. Os lembretes são <strong>locais</strong>: são agendados no seu próprio iPhone pelo sistema, não passam por servidor nenhum, e eu não sei se você os recebeu, se os abriu ou se os desligou. Cada tipo pode ser desligado separadamente no Perfil, e todos de uma vez nos Ajustes do iOS. Quem assina recebe também um aviso 24 horas antes de o teste grátis virar cobrança.</span>
+      <span data-lang="en"><strong>Notifications.</strong> The app can remind you of your routine at a time you choose, and warn you at the end of the day when your streak is at risk. Permission is only requested after you have used the app, never on first launch, and refusing it takes nothing else away. The reminders are <strong>local</strong>: they are scheduled on your own iPhone by the system, they go through no server, and I do not know whether you received them, opened them or turned them off. Each type can be switched off separately in Profile, and all of them at once in iOS Settings. Subscribers also get a notice 24 hours before a free trial turns into a charge.</span>
+    </p>
+    <p>
+      <span data-lang="pt"><strong>Widget.</strong> O widget da tela de início mostra o seu progresso do dia, a sequência e o patamar da ilha. Ele roda em outro processo e não consegue ler o banco do app, então o app deixa para ele um resumo — nível, fração do nível, sequência, quantas tarefas de hoje foram feitas, e se a sua assinatura está ativa — numa área compartilhada entre o app e o widget, dentro do seu aparelho (um <em>App Group</em> da Apple). <strong>Esse resumo não sai do iPhone</strong>, não contém o nome das suas tarefas nem a lista do que você está largando, e é apagado junto com o app.</span>
+      <span data-lang="en"><strong>Widget.</strong> The home screen widget shows today's progress, your streak and your island stage. It runs in a separate process and cannot read the app's database, so the app leaves it a summary — level, progress through the level, streak, how many of today's tasks are done, and whether your subscription is active — in an area shared between the app and the widget, inside your device (an Apple <em>App Group</em>). <strong>That summary never leaves the iPhone</strong>, contains neither your task names nor the list of what you are quitting, and is deleted along with the app.</span>
+    </p>
+    <p>
+      <span data-lang="pt"><strong>Compartilhamento.</strong> Você pode gerar uma imagem do seu progresso para publicar onde quiser. A imagem é montada <strong>no seu aparelho</strong>, na hora, e entregue à folha de compartilhamento do iOS — quem decide se ela vai para algum lugar, e para onde, é você. Nada é enviado para mim, e o app não guarda cópia. O cartão mostra sequência, nível, dias perfeitos e tarefas concluídas; ele nunca inclui a lista do que você está largando.</span>
+      <span data-lang="en"><strong>Sharing.</strong> You can generate an image of your progress to post wherever you like. The image is rendered <strong>on your device</strong>, on the spot, and handed to the iOS share sheet — whether it goes anywhere, and where, is entirely your call. Nothing is sent to me, and the app keeps no copy. The card shows your streak, level, perfect days and completed tasks; it never includes the list of what you are quitting.</span>
+    </p>
+    <h3 id="falhas">7. <span data-lang="pt">Relatórios de falha</span><span data-lang="en">Crash reports</span></h3>
     <p>
       <span data-lang="pt">Se você tiver escolhido partilhar diagnósticos com desenvolvedores nos ajustes do iOS, a Apple pode enviar-me relatórios de falha anónimos. Eles não contêm informação pessoal e servem apenas para corrigir erros. Não há nenhuma ferramenta de relatório de falhas de terceiro embarcada no app.</span>
       <span data-lang="en">If you chose to share diagnostics with developers in your iOS settings, Apple may send me anonymous crash reports. They contain no personal information and are used only to fix bugs. There is no third-party crash reporting tool embedded in the app.</span>
     </p>
-    <h3 id="naofaz">7. <span data-lang="pt">O que o app não faz</span><span data-lang="en">What the app does not do</span></h3>
+    <h3 id="naofaz">8. <span data-lang="pt">O que o app não faz</span><span data-lang="en">What the app does not do</span></h3>
     <ul>
       <li><span data-lang="pt">Não pede cadastro, login, e-mail nem senha. Não existe conta.</span>
           <span data-lang="en">It asks for no sign-up, login, email or password. There is no account.</span></li>
@@ -140,32 +156,32 @@
           <span data-lang="en"><strong>It has no advertising</strong> — no banners, no full-screen ads, no rewarded videos, on any plan.</span></li>
       <li><span data-lang="pt">Não usa ferramentas de análise de comportamento — não há Firebase Analytics, Mixpanel, Amplitude ou equivalente.</span>
           <span data-lang="en">It uses no behavioural analytics tooling — there is no Firebase Analytics, Mixpanel, Amplitude or equivalent.</span></li>
-      <li><span data-lang="pt">Não pede acesso a fotos, contatos, microfone, câmera, localização nem notificações.</span>
-          <span data-lang="en">It requests no access to photos, contacts, microphone, camera, location or notifications.</span></li>
+      <li><span data-lang="pt">Não pede acesso a fotos, contatos, microfone, câmera nem localização. A única permissão que ele chega a pedir é a de notificação, e só depois que você já usou o app.</span>
+          <span data-lang="en">It requests no access to photos, contacts, microphone, camera or location. The only permission it ever asks for is notifications, and only after you have used the app.</span></li>
     </ul>
-    <h3 id="criancas">8. <span data-lang="pt">Crianças</span><span data-lang="en">Children</span></h3>
+    <h3 id="criancas">9. <span data-lang="pt">Crianças</span><span data-lang="en">Children</span></h3>
     <p>
       <span data-lang="pt">O LevelGrip não é dirigido a crianças menores de 13 anos e, como não recolho dado pessoal de ninguém, também não guardo dado nenhum sobre elas. A lista sugerida do que se pode largar cita álcool, tabaco e apostas, e por isso o app é classificado na App Store para maiores de idade.</span>
       <span data-lang="en">LevelGrip is not directed at children under 13 and, since I collect no personal data from anyone, I hold no data about them either. The suggested list of things to quit mentions alcohol, tobacco and betting, which is why the app carries an adult age rating on the App Store.</span>
     </p>
-    <h3 id="direitos">9. <span data-lang="pt">Os seus direitos</span><span data-lang="en">Your rights</span></h3>
+    <h3 id="direitos">10. <span data-lang="pt">Os seus direitos</span><span data-lang="en">Your rights</span></h3>
     <p>
       <span data-lang="pt">O RGPD na Europa, a LGPD no Brasil e leis equivalentes em outros lugares dão a você direito de acesso, correção, apagamento, oposição e portabilidade dos seus dados pessoais. Como eu não recolho nem guardo dado pessoal nenhum, não existe base de dados minha para consultar, corrigir ou apagar — os dados do app estão todos no seu aparelho, sob o seu controle direto.</span>
       <span data-lang="en">The GDPR in Europe, the LGPD in Brazil and equivalent laws elsewhere give you the right to access, correct, delete, object to and port your personal data. Since I collect and store no personal data at all, there is no database of mine to inspect, correct or erase — the app's data is entirely on your device, under your direct control.</span>
     </p>
-    <h3 id="apagar">10. <span data-lang="pt">Como apagar tudo</span><span data-lang="en">How to delete everything</span></h3>
+    <h3 id="apagar">11. <span data-lang="pt">Como apagar tudo</span><span data-lang="en">How to delete everything</span></h3>
     <ul>
       <li><span data-lang="pt"><strong>Uma tarefa ou um item da lista de vícios:</strong> deslize a linha para a esquerda e toque em Excluir. As marcações daquele item somem junto.</span>
           <span data-lang="en"><strong>One task or one item from the quitting list:</strong> swipe the row to the left and tap Delete. Its ticks go with it.</span></li>
       <li><span data-lang="pt"><strong>Tudo:</strong> apague o app. Não há cópia em lugar nenhum, então não há nada mais a pedir a ninguém.</span>
           <span data-lang="en"><strong>Everything:</strong> delete the app. There is no copy anywhere, so there is nothing left to ask anyone for.</span></li>
     </ul>
-    <h3 id="mudancas">11. <span data-lang="pt">Mudanças nesta política</span><span data-lang="en">Changes to this policy</span></h3>
+    <h3 id="mudancas">12. <span data-lang="pt">Mudanças nesta política</span><span data-lang="en">Changes to this policy</span></h3>
     <p>
       <span data-lang="pt">Se o app passar a tratar dados de outra forma — por exemplo, se um dia ganhar sincronização por iCloud —, esta página muda antes de a versão que introduzir a mudança chegar à App Store, e a data no topo é atualizada. Não há histórico de versões escondido: o que está aqui é o que vale.</span>
       <span data-lang="en">If the app starts handling data differently — for instance, if it ever gains iCloud sync — this page changes before the version introducing that change reaches the App Store, and the date at the top is updated. There is no hidden version history: what is here is what applies.</span>
     </p>
-    <h3 id="contato">12. <span data-lang="pt">Contato</span><span data-lang="en">Contact</span></h3>
+    <h3 id="contato">13. <span data-lang="pt">Contato</span><span data-lang="en">Contact</span></h3>
     <p>
       <span data-lang="pt">Dúvida, pedido ou reclamação sobre privacidade: <a href="mailto:guilorenzi04@gmail.com">guilorenzi04@gmail.com</a>. Respondo em português ou inglês, normalmente em até 48 horas úteis.</span>
       <span data-lang="en">Questions, requests or complaints about privacy: <a href="mailto:guilorenzi04@gmail.com">guilorenzi04@gmail.com</a>. I answer in English or Portuguese, usually within two business days.</span>
