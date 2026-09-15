@@ -1,0 +1,30 @@
+# Cabeçalhos de segurança e de cache, aplicados pelo Cloudflare Workers.
+# Formato: padrão de URL na primeira linha, cabeçalhos indentados abaixo.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-CsES7YDI5GrriTiOkdSRLC634cCeX5HptxBdccHwFuU=' 'sha256-/ml1d1ahIhSryl4BhHDiJUs2tz30PRRWFc711ouNw5Y='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'; upgrade-insecure-requests
+
+# ---------------------------------------------------------------- cache
+
+# Imagens: nomes estáveis e conteúdo que não muda. Trocar uma imagem exige
+# purge no painel da Cloudflare (ou um nome novo).
+/assets/img/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# CSS e JS: os nomes NÃO têm hash de conteúdo (style.css, main.js são fixos),
+# então o cache é curto — senão uma correção levaria dias a chegar.
+/assets/css/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+/assets/js/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# HTML: é o que mais muda (textos legais). Sempre revalida.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate

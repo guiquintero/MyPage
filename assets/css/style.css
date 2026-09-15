@@ -89,6 +89,43 @@ body::before {                       /* grão fino, sobre tudo */
 .glow--b { width: min(46vw, 480px); aspect-ratio: 1; top: 22%; right: -14%;
            background: radial-gradient(circle, rgba(120,110,255,.20), transparent 68%); }
 
+/* ----------------------------------------- 2b. carrossel do hero (fundo) */
+/* Três esteiras de ícones correndo na diagonal por trás do texto. Cada
+   esteira repete a sua lista duas vezes e desliza exatamente metade da
+   largura, então a emenda cai sempre num ponto idêntico e não se vê. */
+.reel {
+  position: absolute; inset: -25% -35%; z-index: 0; overflow: hidden;
+  pointer-events: none;
+  display: flex; flex-direction: column; justify-content: center;
+  transform: rotate(-14deg);
+  /* o texto do hero fica por cima, então a faixa abre espaço onde ele cai */
+  -webkit-mask-image: radial-gradient(52% 50% at 30% 52%, transparent 42%, #000 88%),
+                      linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  -webkit-mask-composite: source-in;
+          mask-image: radial-gradient(52% 50% at 30% 52%, transparent 42%, #000 88%),
+                      linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+          mask-composite: intersect;
+  opacity: .6;
+}
+
+.reel__lane { display: flex; width: max-content; gap: clamp(18px, 3vw, 34px); }
+.reel__lane + .reel__lane { margin-top: clamp(18px, 3vw, 34px); }
+
+.reel__lane img {
+  width: clamp(62px, 8.5vw, 104px); height: auto; flex: none;
+  border-radius: 22.5%;
+  border: 1px solid rgba(255, 255, 255, .08);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .55);
+}
+
+/* duas velocidades e dois sentidos, para a faixa não parecer um bloco só */
+.reel__lane--a { animation: reel-left  46s linear infinite; }
+.reel__lane--b { animation: reel-right 62s linear infinite; }
+.reel__lane--c { animation: reel-left  54s linear infinite; }
+
+@keyframes reel-left  { to { transform: translateX(-50%); } }
+@keyframes reel-right { from { transform: translateX(-50%); } }
+
 /* --------------------------------------------------------------- 3. nav */
 .nav {
   position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
@@ -163,18 +200,48 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
   box-shadow: 0 0 0 3px rgba(61, 220, 132, .18);
 }
 
+/* O nome é o título da página; o sobrenome ganha uma linha só sua.
+   O clamp é calibrado pelo nome inteiro ("Guilherme Quintero"), que é a
+   linha mais longa — por isso 7.6vw, e não um valor maior. */
 .hero h1 {
-  font-size: clamp(40px, 7vw, 76px);
-  margin-bottom: 22px;
+  font-size: clamp(38px, 7.6vw, 104px);
+  line-height: .98; letter-spacing: -.045em;
+  margin-bottom: 20px;
 }
-.hero h1 em { font-style: normal; color: var(--accent); }
+.hero h1 > span { display: block; }
+/* em telas estreitas "Guilherme Quintero" não cabe numa linha: vira duas */
+.hero__break { display: inline; }
+@media (max-width: 560px) {
+  .hero__break { display: block; height: 0; }
+}
+.hero h1 .hero__surname {
+  background: linear-gradient(96deg, var(--accent), #ff4d6d 52%, #a97bff);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  /* se background-clip:text falhar, o texto fica invisível: este fallback
+     devolve a cor sólida antes de a regra acima ser aplicada */
+  -webkit-text-fill-color: transparent;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero h1 .hero__surname { color: var(--text); -webkit-text-fill-color: currentColor; }
+}
+
+/* linha de ofício, logo abaixo do nome */
+.hero__role {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  font-size: clamp(16px, 2.2vw, 22px); font-weight: 600;
+  letter-spacing: -.02em; color: var(--text); margin-bottom: 18px;
+}
+.hero__role .sep { width: 5px; height: 5px; border-radius: 50%; background: var(--faint); flex: none; }
+.hero__role .mono { font-family: var(--mono); font-size: .82em; color: var(--muted); font-weight: 500; }
 
 .hero__sub {
-  font-size: clamp(17px, 2.1vw, 21px); color: var(--muted);
+  font-size: clamp(16px, 2.1vw, 20px); color: var(--muted);
   max-width: 620px; margin-bottom: 34px; letter-spacing: -.005em;
 }
+.hero__sub em { font-style: normal; color: var(--text); }
 
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: clamp(30px, 4vw, 44px); }
 
 .btn {
   display: inline-flex; align-items: center; gap: 9px;
@@ -225,10 +292,14 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
               color-mix(in srgb, var(--accent) 13%, transparent), transparent 72%);
   pointer-events: none;
 }
-#kegelflow { --accent: #ff7a45; --accent-ink: #24100a; }
-#flashs    { --accent: #ffd250; --accent-ink: #241d05; }
-#fruitsful { --accent: #6fbf3a; --accent-ink: #0d1c06; }
-#puzzle    { --accent: #4cc46a; --accent-ink: #06180d; }
+/* Um acento por app, tirado da cor dominante do próprio ícone. */
+#kegelflow { --accent: #ff7a45; --accent-ink: #24100a; }  /* laranja  */
+#flashs    { --accent: #ffd250; --accent-ink: #241d05; }  /* amarelo  */
+#fruitsful { --accent: #ff4d3d; --accent-ink: #2a0a06; }  /* vermelho */
+#puzzle    { --accent: #4cc46a; --accent-ink: #06180d; }  /* verde    */
+#levelgrip { --accent: #4d7cff; --accent-ink: #060f2a; }  /* azul     */
+#evergrid  { --accent: #2fd9a0; --accent-ink: #05201a; }  /* verde    */
+#zodique   { --accent: #a97bff; --accent-ink: #150a2a; }  /* roxo     */
 
 .app__top { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
 
@@ -283,6 +354,10 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
 }
 
 .app__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+
+/* o botão da loja do app que ainda não saiu: presente na ficha, mas apagado */
+.btn--off { opacity: .5; cursor: default; }
+.btn--off:hover { transform: none; border-color: var(--line-2); }
 
 /* ------------------------------------------------ 8. galeria e moldura */
 .gallery {

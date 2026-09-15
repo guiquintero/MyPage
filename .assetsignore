@@ -1,0 +1,21 @@
+# Arquivos que NÃO devem ser publicados pelo Cloudflare Workers.
+# O wrangler.jsonc serve a raiz do repositório inteira ("assets.directory": "./"),
+# então tudo o que não for do site precisa ser listado aqui.
+# Mesmo formato do .gitignore.
+
+# Metadados do git
+.git
+.git/**
+
+# Configuração e notas internas do projeto
+wrangler.jsonc
+CLAUDE.md
+.gitignore
+.assetsignore
+
+# Consumido na build, não servido
+_headers
+
+# Lixo de sistema
+.DS_Store
+Thumbs.db
