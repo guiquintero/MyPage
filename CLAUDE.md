@@ -1,5 +1,9 @@
 # CLAUDE.md — Histórico e contexto do projeto MyPage
 
+> **Compatibilidade Claude + Codex:** este arquivo e `AGENTS.md` são espelhos. Ao
+> atualizar qualquer regra, estado, problema ou sessão, aplique a mesma mudança no outro
+> arquivo na mesma tarefa para que os dois agentes recebam a mesma memória.
+
 > **Instruções para o Claude (ler sempre no início da sessão):**
 > 1. **No começo de toda conversa**, ler este arquivo inteiro antes de qualquer coisa.
 > 2. **Ao longo da conversa**, sempre que surgir informação nova, decisão tomada, problema resolvido ou problema em aberto, registrar aqui.
@@ -12,7 +16,7 @@
 ## Visão geral do projeto
 
 - **Nome:** MyPage
-- **Caminho:** `/Users/guilhermelorenzi/GQL/MyPage`
+- **Caminho:** raiz deste projeto (`.`)
 - **O que é:** site pessoal estático do Guilherme Quintero Lorenzi, que funciona como portfólio dos apps iOS e como host das páginas legais (política de privacidade e termos de uso) exigidas pela App Store.
 - **Domínio:** `guilhermequinterolorenzi.com` (ver [CNAME](CNAME))
 - **Branch principal:** `main`
