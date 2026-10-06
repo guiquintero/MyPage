@@ -300,6 +300,7 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
 #levelgrip { --accent: #4d7cff; --accent-ink: #060f2a; }  /* azul     */
 #evergrid  { --accent: #2fd9a0; --accent-ink: #05201a; }  /* verde    */
 #zodique   { --accent: #a97bff; --accent-ink: #150a2a; }  /* roxo     */
+#takeflow  { --accent: #3df2c3; --accent-ink: #04241b; }  /* menta    */
 
 .app__top { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
 

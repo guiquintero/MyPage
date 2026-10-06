@@ -9,7 +9,8 @@
 
 # Configuração e notas internas do projeto
 wrangler.jsonc
-CLAUDE.md
+CNAME
+*.md
 .gitignore
 .assetsignore
 
