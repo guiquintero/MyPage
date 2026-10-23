@@ -425,6 +425,7 @@ h1, h2, h3 { letter-spacing: -.035em; line-height: 1.05; font-weight: 700; }
 .about__grid {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .78fr);
   gap: clamp(30px, 5vw, 64px); align-items: start;
+  padding-bottom: clamp(56px, 8vw, 96px);
 }
 .about__grid p { color: #c8c8d0; }
 .about__grid p + p { margin-top: 16px; }

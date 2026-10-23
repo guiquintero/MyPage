@@ -117,6 +117,8 @@ não do Puzzle — um `cp` para a pasta errada. Não usar achando que é Puzzle.
 | 2026-09-15 | Todo app tem os mesmos 3 botões (App Store, Privacidade, Termos) | Antes, app não publicado tinha um botão apagado com texto diferente. Agora a ficha é sempre igual; o botão da loja fica desabilitado (`.btn--off`) enquanto o app não sai |
 | 2026-09-15 | Prints do LevelGrip recortados de dentro do mockup de marketing | Não existe print cru salvo (o `capturar.sh` não preservou o intermediário). O site desenha a própria moldura de iPhone em CSS, então a UI recortada basta |
 | 2026-09-15 | Cache longo só para imagens; CSS e JS com 1 h | `style.css` e `main.js` têm nome fixo, sem hash de conteúdo — cache longo faria uma correção demorar dias a chegar |
+| 2026-10-23 | O site passa a servir também de portfólio para busca de emprego (iOS + IA + web), não só dos apps | O Guilherme está à procura de emprego remoto; recrutadores chegam pelo link do CV e precisam ver LinkedIn, GitHub e o perfil completo |
+| 2026-10-23 | Rótulos da `.stack` sempre dentro de `<span>` | `.stack__row span` define o tamanho; rótulo em texto puro (ex.: "Apple Watch") saía menor e mais apagado que os outros |
 
 ## Segurança
 
@@ -171,6 +173,26 @@ terceiro nenhum carregado — a superfície real é pequena.
   suposição — conferir no App Store Connect e corrigir se diferente.
 
 ## Histórico de sessões
+
+### 2026-10-23 — Seção Sobre ampliada, LinkedIn e GitHub
+- **Pedido:** o Guilherme está à procura de emprego e quer que o site fale mais
+  sobre ele: experiência com sites do começo ao fim (domínio, DNS,
+  redirecionamentos, hospedagem, publicação, manutenção), Shopify, SaaS,
+  Supabase/Firebase, IA generativa, e links para LinkedIn e GitHub.
+- **Feito:** quatro parágrafos novos no `#sobre` (web, IA, formação/trajetória);
+  linhas IA, Web, Back end e Infra na `.stack`; botões LinkedIn/GitHub/E-mail;
+  links no rodapé; `<link rel="me">` no `<head>`; meta description atualizada;
+  `padding-bottom` no `.about__grid` (os botões encostavam na borda do
+  suporte); "MVVM com" corrigido no inglês. Nenhum script inline mudou, então
+  os hashes da CSP continuam válidos.
+- **Links:** LinkedIn `linkedin.com/in/guilherme-quintero-lorenzi-23094b1a5`,
+  GitHub `github.com/guiquintero` (perfil desatualizado: só repos de curso,
+  localização "Ponta Grossa, PR").
+- **Estado:** alterações **não commitadas e não deployadas**, à espera da
+  revisão do Guilherme.
+- **Em aberto:** o título do Sobre ("Faço o app inteiro, não só a tela.") ainda
+  fala só de app; avaliar com o Guilherme. CV em PDF no site não foi publicado
+  porque contém o telefone dele.
 
 ### 2026-09-15 — Reestruturação do index, cores por app, hero e segurança
 - **Pedido:** organizar melhor a estrutura do site; dar a cada app uma cor de
