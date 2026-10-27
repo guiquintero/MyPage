@@ -20,3 +20,7 @@ _headers
 # Lixo de sistema
 .DS_Store
 Thumbs.db
+
+# Cache e temporários do Wrangler (gravados na pasta do projeto a cada deploy)
+.wrangler
+.wrangler/**
